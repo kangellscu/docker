@@ -44,13 +44,17 @@ nginx 与 fpm worker 以用户 www 运行，该用户可以在image build阶段�
 
 * 1. 配置挂载点
 
-image指定/data/conf为配置挂载点，默认情况下，在运行时，会检查如下配置文件是否存在，如果存在则复制到对应的地址
+image指定/data/conf为配置挂载点，用于挂载自定义配置文件，默认情况下，在运行时，会检查如下配置文件是否存在，如果存在则复制到对应的地址
 
 | 配置文件 | 复制地址 |
 | --- | --- |
 | /data/conf/server/nginx-site.conf | /usr/local/nginx/conf/conf.d/nginx-site.conf |
 | /data/conf/server/php.ini | /usr/local/etc/php/conf.d/docker-vars.ini |
 | /data/conf/server/fpm.conf | /user/loca/etc/php-fpm.d/www.conf |
+
+image会检查环境变量: PROJECT_CONF_SCRIPT，如果被设置，且为一个普通文件，则执行该文件。因此我们可以在构建项目特定image时，设置项目配置的处理逻辑
+
+***注意***: 自定义配置文件的处理只会在第一次容器运行时才会执行，重新运行已有的容器并不会处理自定义配置文件。(这样做的目的是为了创建immutable service)
 
 * 2. 日志挂载点
 

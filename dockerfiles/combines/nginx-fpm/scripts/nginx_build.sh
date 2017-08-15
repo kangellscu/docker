@@ -1,14 +1,14 @@
 #!/bin/bash
 #
 # Env variables must be set
-#   NGINX_USER
-#   NGINX_GROUP
+#   SERVER_USER
+#   SERVER_GROUP
 #   NGINX_VERSION
 #
 
 set -e
 
-for env_name in "NGINX_USER" "NGINX_GROUP" "NGINX_VERSION"; do
+for env_name in "SERVER_USER" "SERVER_GROUP" "NGINX_VERSION"; do
   if [ -z ${!env_name} ]; then
     echo "Env ${env_name} must be set"
   fi
@@ -17,8 +17,7 @@ done
 NGINX_GPG_SIGN_KEY=B0F4253373F8F6F510D42178520A9993A1C052F8
 NGINX_INSTALL_PREFIX=/usr/local/nginx
 
-apk add --virtual .build-deps \
-		curl \
+apk add curl \
 		gcc \
 		gd-dev \
 		gnupg \
@@ -50,6 +49,6 @@ cd ./sources/nginx-${NGINX_VERSION}
 	--with-pcre-jit \
 	--with-http_stub_status_module \
 	--with-http_gzip_static_module \
-	--user=${NGINX_USER} \
-	--group=${NGINX_GROUP}
+	--user=${SERVER_USER} \
+	--group=${SERVER_GROUP}
 make && make install

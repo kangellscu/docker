@@ -72,7 +72,7 @@ echo "memory_limit = 128M"  >> ${PHP_INI}
 echo "Modify php-fpm.d/www.conf"
 
 sed -i \
-  -e "s#;error_log = log/php-fpm.log#error_log = ${LOG_DIR}/${HOSTNAME}.fpm.log#g" \
+  -e "s#;error_log = log/php-fpm.log#error_log = ${LOG_DIR}/fpm.log#g" \
   /usr/local/etc/php-fpm.conf
 
 rm -rf /usr/local/etc/php-fpm.d/*.conf

@@ -65,8 +65,8 @@ NGINX_CONF=${NGINX_INSTALL_PREFIX}/conf/nginx.conf
 cp -f ${BUILD_DIR}/conf/nginx.conf ${NGINX_CONF}
 sed -i \
   -e "s/user nobody/user ${SERVER_USER}/g" \
-  -e "s@access_log  logs/access.log  main@access_log ${LOG_DIR}/${HOSTNAME}.nginx_access.log main@g" \
-  -e "s@error_log logs/error.log@error_log ${LOG_DIR}/${HOSTNAME}.nginx_error.log@g" \
+  -e "s@access_log  logs/access.log  main@access_log ${LOG_DIR}/nginx_access.log main@g" \
+  -e "s@error_log logs/error.log@error_log ${LOG_DIR}/nginx_error.log@g" \
   ${NGINX_CONF}
 
 mkdir -p ${NGINX_INSTALL_PREFIX}/conf/conf.d

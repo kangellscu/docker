@@ -70,4 +70,4 @@ sed -i \
   ${NGINX_CONF}
 
 mkdir -p ${NGINX_INSTALL_PREFIX}/conf/conf.d
-cp -f ${BUILD_DIR}/conf/nginx-site.conf ${NGINX_INSTALL_PREFIX}/conf/conf.d/
+cp -f ${BUILD_DIR}/conf/nginx-site.conf ${NGINX_INSTALL_PREFIX}/conf/conf.d/site.conf
